@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <title>Show and Filter</title>
+</head>
+<body>
+    <div class="container p-5">
+        <div class="row">
+            <!-- Start Sidebar -->
+            <div class="col-12 col-md-4 p-3 sidebar custom-border">
+                <form class="form" id="filter-form">
+                    
+                    <!-- Start Product Search -->
+                    <div class="form-group mb-2">
+                        <input class="form-control input-search custom-border" name="product"/>
+                    </div>
+                    <!-- End Product Search -->
+
+                    <!-- Start Categories -->
+                    <fieldset>
+                        <legend class="px-2">Categories</legend>
+                        <div class="form-group py-2">
+                            <input type="checkbox" name="categories[]" value="category-1" id="category-1"/>
+                            <label for="category-1" class="mx-2">Category-1</label>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="checkbox" name="categories[]" value="category-2" id="category-2"/>
+                            <label for="category-2" class="mx-2">Category-2</label>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="checkbox" name="categories[]" value="category-3" id="category-3"/>
+                            <label for="category-3" class="mx-2">Category-3</label>
+                        </div>
+                    </fieldset>
+                    <!-- End Categories -->
+
+                    <!-- Start Brands -->
+                    <fieldset>
+                        <legend class="px-2">Brands</legend>
+                        <div class="form-group py-2">
+                            <input type="checkbox" name="brands[]" value="brand-1" id="brand-1"/>
+                            <label for="brand-1" class="mx-2">Brand-1</label>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="checkbox" name="brands[]" value="brand-2" id="brand-2"/>
+                            <label for="brand-2" class="mx-2">Brand-2</label>
+                        </div>
+                        <div class="form-group py-2">
+                            <input type="checkbox" name="brands[]" value="brand-3" id="brand-3"/>
+                            <label for="brand-3" class="mx-2">Brand-3</label>
+                        </div>
+                    </fieldset>
+                    <!-- End Brands -->
+                </form>
+            </div>
+            <!-- End Sidebar -->
+
+            <!-- Start products -->
+            <div class="col-12 col-md-8 products-container">
+                <h2 class="text-center">13 Results found</h2>
+
+                <div class="row products g-4">
+                    <div class="col-6">
+                        <div class="product">Product-1</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="product">Product-1</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="product">Product-1</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="product">Product-2</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="product">Product-2</div>
+                    </div>
+                    <div class="col-6">
+                        <div class="product">Product-3</div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Products -->
+
+            <!-- Start Load more button -->
+            <div class="row">
+                <div class="col-12 col-md-4"></div>
+                <div class="col-12 col-md-8">
+                    <div class="form-group text-center">
+                        <button id="load-more-button" class="btn btn-primary mx-auto my-3 px-5 py-2 border-0 text-dark">More</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Load more button -->
+        </div>
+    </div>
+</body>
+</html>

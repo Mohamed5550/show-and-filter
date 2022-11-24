@@ -1,0 +1,32 @@
+.custom-border {
+    border: 2px solid #9c9fa4;
+    border-radius: 5px;
+    box-shadow: none !important;
+}
+
+.sidebar {
+    background-color: #fff7a1;
+}
+
+.input-search {
+    background-color: #f2f2ff
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.product {
+    background-color: #ffd9d9;
+    color: #3a414a;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+#load-more-button {
+    background-color: #b8f5ed;
+}
