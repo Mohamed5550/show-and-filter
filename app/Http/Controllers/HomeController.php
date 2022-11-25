@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Models\ProductSearch;
 use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
@@ -19,7 +20,8 @@ class HomeController extends Controller
             "search-input" => "string|nullable",
             "categories" => "array|nullable",
             "brands" => "array|nullable",
-            "start" => "required|numeric"
+            "start" => "required|numeric",
+            "storeSearch" => "required"
         ]);
 
         if($validator->fails())
@@ -28,8 +30,23 @@ class HomeController extends Controller
                 "message" => __("Input is not correct")
             ], 400);
         }
+        
+        $query = $this->query();
 
-        $query = Product::when($request->input("categories"), function($query) use ($request) {
+        if($request->input("storeSearch") == "true")
+            $this->storeSearch();
+
+        return response()->json([
+            "state" => "success",
+            "count" => $query->count(),
+            "data" => $query->skip($request->input('start'))->take(12)->get(),
+        ]);
+    }
+
+    public function query()
+    {
+        $request = request();
+        return Product::when($request->input("categories"), function($query) use ($request) {
             return $query->whereIn("category", $request->input("categories"));
         })
         ->when($request->input("brands"), function($query) use ($request) {
@@ -40,12 +57,16 @@ class HomeController extends Controller
                 ->orWhere("category", $request->input("search-input"))
                 ->orWhere("brand", $request->input("search-input"));
         });
-        
+    }
 
-        return response()->json([
-            "state" => "success",
-            "count" => $query->count(),
-            "data" => $query->skip($request->input('start'))->take(12)->get(),
-        ]);
+    public function storeSearch()
+    {
+        $request = request();
+        if($request->input("start") == 0)
+        {
+            ProductSearch::create([
+                "search_query" => json_encode($request->except("_token"))
+            ]);
+        }
     }
 }

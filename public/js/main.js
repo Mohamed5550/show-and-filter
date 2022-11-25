@@ -2,7 +2,6 @@ const submitRoute   = document.querySelector("meta[name='search-route']").getAtt
 const CSRFToken     = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 window.onload = function()
 {
-    let searchButton        = document.querySelector("#load-more-button");
     let filterForm          = document.querySelector("#filter-form");
     let searchInput         = document.querySelector("#search-input");
     let productsContainer   = document.querySelector("#products");
@@ -16,7 +15,7 @@ window.onload = function()
     {
 
         // no more data
-        if(count == currentItemsCount)
+        if(count == currentItemsCount && isMore)
             alert("No more data to show");
 
         // increase viewed products counter
@@ -40,7 +39,7 @@ window.onload = function()
         }
     }
 
-    let sendRequest = function(isMore = 0)
+    let sendRequest = function(isMore = false, insideForm = true)
     {
         if(!isMore) currentItemsCount = 0;
 
@@ -58,6 +57,7 @@ window.onload = function()
         }
         data.append("_token", CSRFToken);
         data.append("start", currentItemsCount);
+        data.append("storeSearch", insideForm);            
 
         xhr.open("POST", submitRoute, true);
         xhr.send(data);
@@ -83,5 +83,5 @@ window.onload = function()
     }
 
     // initial view
-    sendRequest();
+    sendRequest(false, false);
 }
