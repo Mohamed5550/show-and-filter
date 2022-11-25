@@ -19,6 +19,7 @@ class HomeController extends Controller
             "search-input" => "string|nullable",
             "categories" => "array|nullable",
             "brands" => "array|nullable",
+            "start" => "required|numeric"
         ]);
 
         if($validator->fails())
@@ -43,8 +44,8 @@ class HomeController extends Controller
 
         return response()->json([
             "state" => "success",
-            "data" => $query->limit(12)->get(),
-            "count" => $query->count()
+            "count" => $query->count(),
+            "data" => $query->skip($request->input('start'))->take(12)->get(),
         ]);
     }
 }

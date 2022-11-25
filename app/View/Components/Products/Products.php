@@ -7,7 +7,6 @@ use Illuminate\View\Component;
 
 class Products extends Component
 {
-    public $products;
     /**
      * Create a new component instance.
      *
@@ -15,7 +14,6 @@ class Products extends Component
      */
     public function __construct()
     {
-        $this->products = Product::get("product");
     }
 
     /**
